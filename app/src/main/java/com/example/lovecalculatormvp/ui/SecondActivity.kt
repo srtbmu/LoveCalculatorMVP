@@ -1,13 +1,15 @@
 package com.example.lovecalculatormvp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.lovecalculatormvp.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.lovecalculatormvp.ResultPresenter
 import com.example.lovecalculatormvp.databinding.ActivitySecondBinding
 import com.example.lovecalculatormvp.model.LoveModel
+import com.example.lovecalculatormvp.view.ResultView
 
-class SecondActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity(), ResultView {
     private lateinit var binding: ActivitySecondBinding
+    private val presenter = ResultPresenter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
@@ -17,11 +19,20 @@ class SecondActivity : AppCompatActivity() {
 
     private fun setupUI() {
         val result = intent.getSerializableExtra("key") as LoveModel
+        presenter.getData(result)
+    }
+
+    override fun showLove(
+        percentage: String,
+        result: String,
+        firstName: String,
+        secondName: String
+    ) {
         with(binding) {
-            firstName.text = result.firstName
-            secondName.text = result.secondName
-            textResult.text = result.percentage + "%"
-            text.text = result.result
+            firstNameEt.text = percentage
+            secondNameEt.text = result
+            TvLoveProcent.text = firstName
+            Tvadvice.text = secondName
         }
     }
 }

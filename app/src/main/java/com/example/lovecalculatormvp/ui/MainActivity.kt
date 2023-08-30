@@ -1,9 +1,9 @@
 package com.example.lovecalculatormvp.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.changeScreen
 import com.example.lovecalculatormvp.Presenter
 import com.example.lovecalculatormvp.databinding.ActivityMainBinding
 import com.example.lovecalculatormvp.model.LoveModel
@@ -29,11 +29,7 @@ class MainActivity : AppCompatActivity(), LoveView {
     }
 
     override fun navigateToResultScreen(loveModel: LoveModel) {
-        val intent = Intent(this, SecondActivity::class.java)
-        val bundle = Bundle()
-        bundle.putSerializable("key", loveModel)
-        intent.putExtras(bundle)
-        startActivity(intent)
+        changeScreen(SecondActivity(), loveModel)
     }
 
     override fun showError(error: String) {

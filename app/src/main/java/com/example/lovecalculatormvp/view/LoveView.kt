@@ -6,5 +6,5 @@ interface LoveView {
 
     fun navigateToResultScreen(loveModel: LoveModel)
 
-    fun showError(error:String)
+    fun showError(error: String)
 }

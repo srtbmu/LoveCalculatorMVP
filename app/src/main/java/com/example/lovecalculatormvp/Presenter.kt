@@ -1,6 +1,5 @@
 package com.example.lovecalculatormvp
 
-import android.util.Log
 import com.example.lovecalculatormvp.model.LoveModel
 import com.example.lovecalculatormvp.model.RetrofitService
 import com.example.lovecalculatormvp.view.LoveView
@@ -19,7 +18,6 @@ class Presenter(val loveView: LoveView) {
             override fun onResponse(call: Call<LoveModel>, response: Response<LoveModel>) {
                 response.body()?.let { model ->
                     loveView.navigateToResultScreen(model)
-
                 }
             }
 
